@@ -1,0 +1,41 @@
+﻿@model SMS.Areas.Dashboard.ViewModels.StudentsListingModel
+@if (Model != null&& Model.Students!=null &&Model.Students.Count()>0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+
+                <th scope="col">Roll</th>
+                <th scope="col">Name</th>
+                <th scope="col">Father Name</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var ui in Model.Students)  
+            {
+                <tr>
+
+                    <td>@ui.RollNo</td>
+                    <td>@ui.StdName</td>
+                    <td>@ui.FatherName</td>
+                    <td>@ui.DOB</td>
+                    <td>
+
+                        <button type="button" class="btn btn-primary"> Edit </button>
+                        <button type="button" class="btn btn-danger"> Delete </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+       There is no Record Exxists...!
+    </div>
+}
+
