@@ -14,7 +14,7 @@ namespace SMS.Areas.Dashboard.Controllers
         StudentsServices studentsServices = new StudentsServices();
         public ActionResult Index()
         {
-            return View("");
+            return View();
         }
         public ActionResult Listing()
         {
