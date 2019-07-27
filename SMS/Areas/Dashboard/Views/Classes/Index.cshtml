@@ -1,31 +1,31 @@
-﻿
+﻿@model SMS.Areas.Dashboard.ViewModels.ClassListingModel
 @{
     ViewBag.Title = "Index";
 }
-
-
 <div class="row">
-    <di class="col-lg-12">
-        <h2>Classes</h2>
+    <div class="col-lg-12">
+        <h2>Classes ()</h2>
         <hr />
-    </di>
+    </div>
 </div>
-<div class="row mb-1">
-    <di class="col-lg-12">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search anything Here" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
-            <div class="input-group-append" id="button-addon4">
-                <button class="btn btn-outline-success" type="button">Search</button>
-                <button class="btn btn-outline-secondary" type="button">Reset</button>
-                <button id="btnCreate" class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#actionModal">Create</button>
+<div class="row mb-3">
+    <div class="col-lg-12">
+        <form>
+            <div class="input-group">
+                <input type="text" name="searchTerm" class="form-control" placeholder="Search anything Here" required>
+                <div class="input-group-append" id="button-addon4">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search mr-1"></i>Search</button>
+                    <a class="btn btn-outline-secondary" href="@Url.Action("Index","Classes")"><i class="fas fa-retweet mr-1"></i>Reset</a>
+                    <button data-href="@Url.Action("Action","Classes")" class="data-btn btn btn-outline-primary" type="button" data-toggle="modal" data-target="#actionModal"><i class="far fa-plus-square mr-1"></i> Create</button>
+                </div>
             </div>
-        </div>
-    </di>
+        </form>
+    </div>
 </div>
 <div class="row">
-    <di class="col-lg-12">
-        @{Html.RenderAction("Listing"); }
-    </di>
+    <div class="col-lg-12">
+        @{Html.RenderPartial("_Listing",Model); }
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
@@ -35,16 +35,14 @@
 </div>
 <!--JQUERY-->
 <script>
-    $("#btnCreate").click(function () {
+    $(".data-btn").click(function () {
         $.ajax({
-            url:'@Url.Action("Action","Classes")',
-
+            url: $(this).attr("data-href"),
         })
-            .done(function(response){
+            .done(function (response) {
 
                 $("#actionModal .modal-dialog").html(response);
             });
-
     });
 
 

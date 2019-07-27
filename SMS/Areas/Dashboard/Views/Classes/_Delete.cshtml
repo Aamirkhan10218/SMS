@@ -1,0 +1,40 @@
+﻿@model SMS.Areas.Dashboard.ViewModels.ClassActionModel
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <span> Delete Class</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="frmAction">
+                <div> 
+                    <input type="hidden" name="ClassID" value="@Model.ClassID" />
+                </div>
+                <div class="alert alert-danger">
+                    Are You Sure You Want to Delete This Class?
+               </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button id="btnAction" type="button" class="btn btn-primary">Delete</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+}
+<script>
+       $("#btnAction").click(function() {
+           $.ajax({
+
+               url: '@Url.Action("Delete","Classes")',
+               data: $("#frmAction").serialize(),
+               type: "post"
+           })
+               .done(function (response) {
+
+                   window.location.href = "@Url.Action("Index","Classes")";
+               });
+       });
+</script>

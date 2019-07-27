@@ -51,6 +51,7 @@
     <Compile Include="ClassServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudentsServices.cs" />
+    <Compile Include="TeacherServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SMS.Data\SMS.Data.csproj">

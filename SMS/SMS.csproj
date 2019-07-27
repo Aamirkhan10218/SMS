@@ -175,6 +175,7 @@
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\ClassModels.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\StudentsModels.cs" />
+    <Compile Include="Areas\Dashboard\ViewModels\TeacherModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\all.css" />
     <Content Include="Areas\Dashboard\Content\css\simple-sidebar.css" />
     <Content Include="Areas\Dashboard\Content\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Areas\Dashboard\Content\vendor\bootstrap\css\bootstrap-grid.min.css" />
@@ -242,6 +244,12 @@
     <Content Include="Areas\Dashboard\Views\Students\_Action.cshtml" />
     <Content Include="Areas\Dashboard\Views\Classes\_Listing.cshtml" />
     <Content Include="Areas\Dashboard\Views\Classes\_Action.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Classes\_Delete.cshtml" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="Areas\Dashboard\Views\Teachers\_Listing.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Teachers\_Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -285,6 +293,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

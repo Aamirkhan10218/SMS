@@ -1,0 +1,35 @@
+﻿@model SMS.Areas.Dashboard.ViewModels.TeacherListingModel
+@if (Model != null && Model.Teachers.Count() > 0)
+{
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var mc in Model.Teachers)
+        {
+        <tr>
+            <th scope="row">1</th>
+            <td>
+                @mc.Name
+            </td>
+            <td>
+                <button class="btn btn-primary"> Edit</button>
+                <button class="btn btn-danger"> Delete</button>
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+}
+else
+{
+    <div class="alert alert-warning">
+        There is No Teachers Record Exists...!
+    </div>
+}
