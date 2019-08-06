@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,9 @@ namespace SMS.Entities
         /// <summary>
         /// Class ID Define the Class No of Student
         /// </summary>
-        public int ClassID { get; set; }
+        /// 
+        [Key]
+        public int ID { get; set; }
         /// <summary>
         /// Class Name in English
         /// </summary>

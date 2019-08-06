@@ -8,7 +8,7 @@ namespace SMS.Services
 {
     public class ClassServices
     {
-        public IEnumerable<Class> getAllClasses()
+        public List<Class> getAllClasses()
         {
             var cntxt = new SMSContext();
             return cntxt.Classes.ToList();

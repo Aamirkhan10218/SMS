@@ -1,10 +1,17 @@
-﻿@model SMS.Areas.Dashboard.ViewModels.StudentsActionModel
-
+﻿
+@model SMS.Areas.Dashboard.ViewModels.StudentsActionModel
 @if (Model != null)
 {
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create New Student</h5>
+            @if (Model.RollNo>0)
+            {
+                <h5 class="modal-title" id="exampleModalLabel">Create New Student</h5>
+            }
+            else
+            {
+                <h5 class="modal-title" id="exampleModalLabel">Edit Student</h5>
+            }
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -19,7 +26,7 @@
                         {
                             foreach (var Classes in Model.Classes)
                             {
-                                <option value="@Classes.ID">
+                                <option value="@Classes.ID" @(Classes.ID==Model.ClassID?"selected" : string.Empty)>
                                     @Classes.ClassName
                                 </option>
                             }
@@ -28,35 +35,39 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Student Name</label>
-                    <input class="form-control" name="StdName" placeholder="Enter Student">
+                    <label>Roll No</label>
+                    <input class="form-control" name="RollNo" value="@Model.RollNo" placeholder="Enter Student">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Father Name</label>
-                    <input class="form-control" name="FatherName" placeholder="Enter Father Name">
+                    <label>Student Name</label>
+                    <input class="form-control" name="StdName" value="@Model.StdName" placeholder="Enter Student">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Address</label>
-                    <input class="form-control" name="Address" placeholder="Enter Father Name">
+                    <label>Father Name</label>
+                    <input class="form-control" name="FatherName" value="@Model.FatherName" placeholder="Enter Father Name">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input class="form-control" value="@Model.Address" name="Address" placeholder="Enter Father Name">
                 </div>
                 <div class="form-group">
                     <label>Date of Birth</label>
-                    <input type="date" name="DOB" class="form-control">
+                    <input type="datetime" name="DOB" value="@Model.DOB"  class="form-control">
                 </div>
             </form>
 
         </div>
         <div class="modal-footer">
             <button id="btnAction" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save changes</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times mr-1"></i>Close</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-times mr-1"></i>Close</button>
         </div>
     </div>
 }
 <!--JQUERY FOR SAVE BUTTON-->
-   <script>
+<script>
        $("#btnAction").click(function () {
            $.ajax({
-               url: '@Url.Action("Action","Students")',
+               url: '@Url.Action("Edit","Students")',
                data: $("#frmAction").serialize(),
                type: "post"
            })
@@ -67,5 +78,5 @@
        });
 
 
-   </script>
+</script>
 

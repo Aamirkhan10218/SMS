@@ -28,7 +28,7 @@ namespace SMS.Areas.Dashboard.Controllers
             if (id.HasValue)
             {
                 var getData = services.getClassbyID(id.Value);
-                model.ClassID = getData.ClassID;
+                model.ClassID = getData.ID;
                 model.Name = getData.ClassName;
             }
             //Show Modal

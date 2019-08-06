@@ -1,7 +1,6 @@
 ﻿@model SMS.Areas.Dashboard.ViewModels.TeacherActionModel
-@if (Model != null)
+@if (Model.ID > 0 && Model!=null)
 {
-
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Create New Teacher</h5>
@@ -10,7 +9,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form id="frmCreate">
+            <form id="frmEdit">
                 <div>
                     <input type="hidden" name="classID" value="@Model.ID" />
                 </div>
@@ -24,16 +23,18 @@
             <button id="btnSave" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save changes</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i>Close</button>
         </div>
-    </div>      }
+    </div> 
+}
 <script>
-       $("#btnSave").click(function () {
-           $.ajax({
-               url: '@Url.Action("Create","Teachers")',
-               data: $("#frmCreate").serialize(),
-               type: "post"
-           })
-               .done(function (response) {
-                   location.reload();
-               });
-       });
-</script> 
+    $("#btnSave").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Teachers")',
+            data: $("#frmEdit").serialize(),
+            type: "Post"
+        })
+            .done(function (response) {
+                location.reload();
+            });
+    });
+
+</script>

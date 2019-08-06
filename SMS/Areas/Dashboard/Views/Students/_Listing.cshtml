@@ -4,15 +4,14 @@
     <table class="table table-striped">
         <thead>
             <tr>
-
                 <th scope="col">Roll</th>
                 <th scope="col">Name</th>
                 <th scope="col">Father Name</th>
                 <th scope="col">DOB</th>
+                <th scope="col">Class</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
-
         <tbody>
             @foreach (var ui in Model.Students)  
             {
@@ -22,10 +21,11 @@
                     <td>@ui.StdName</td>
                     <td>@ui.FatherName</td>
                     <td>@ui.DOB</td>
+                    <td>@ui.Class.ClassName</td>
                     <td>
 
-                        <button type="button" class="btn btn-primary"> Edit </button>
-                        <button type="button" class="btn btn-danger"> Delete </button>
+                        <button data-href="@Url.Action("Edit","Students",new{RollNo=ui.RollNo })" type="button" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal"><i class="fas fa-edit mr-1"></i> Edit </button>
+                        <button data-href="@Url.Action("Delete","Students",new{RollNo=ui.RollNo })" type="button" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal"> <i class="fas fa-trash mr-1"></i> Delete </button>
                     </td>
                 </tr>
             }
@@ -35,7 +35,18 @@
 else
 {
     <div class="alert alert-warning" role="alert">
-       There is no Record Exxists...!
+       There is no Record Exist...!
     </div>
 }
+<script>
+    $(".data-btn").click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+        })
+            .done(function (response) {
+                $("#actionModal .modal-dialog").html(response);
+            });
 
+
+    });
+</script>

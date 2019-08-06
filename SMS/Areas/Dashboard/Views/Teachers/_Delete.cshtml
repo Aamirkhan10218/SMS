@@ -1,0 +1,39 @@
+﻿@model SMS.Areas.Dashboard.ViewModels.TeacherActionModel
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Delete Teacher</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="frmDelete">
+                <div>
+                    <input type="hidden" name="classID" value="@Model.ID" />
+                </div>
+                <div class="alert alert-warning" >
+                    Are You Sure You Want To Delete Teacher...?
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button id="btnDelete" type="button" class="btn btn-primary"><i class="fas fa-trash-alt mr-1"></i>Delete</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"> <i class="fas fa-times mr-1"></i>Close</button>
+        </div>
+    </div>
+<script>
+    $("#btnDelete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete","Teachers")',
+            data: $("#frmDelete").serialize(),
+            type:"post"
+        })
+            .done(function (response) {
+                window.location="@Url.Action("Index","Teachers")";
+               });
+
+    });
+
+
+</script>
