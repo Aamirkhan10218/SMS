@@ -1,4 +1,5 @@
 ﻿using SMS.Entities;
+using SMS.ViewModels;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,9 @@ namespace SMS.Areas.Dashboard.ViewModels
     {
         public List<Student> Students { get; set; }
         public IEnumerable<Class> Classes { get; set; }
+        public Pager Pager { get; set; }
+        public int ClassID { get; set; }
+        public String StdName { get; set; }
     }
     public class StudentsActionModel
     {

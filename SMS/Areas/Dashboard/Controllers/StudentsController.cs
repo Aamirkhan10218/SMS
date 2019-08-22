@@ -1,10 +1,7 @@
 ﻿using SMS.Areas.Dashboard.ViewModels;
 using SMS.Entities;
 using SMS.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using SMS.ViewModels;
 using System.Web.Mvc;
 
 namespace SMS.Areas.Dashboard.Controllers
@@ -14,27 +11,37 @@ namespace SMS.Areas.Dashboard.Controllers
         StudentsServices studentsServices = new StudentsServices();
         StudentsListingModel model = new StudentsListingModel();
         ClassServices clsServices = new ClassServices();
-        public ActionResult Index(string stdName,int ID=0)
+        public ActionResult Index(string stdName,int? ID=0,int? page=0)
         {
+            int recordSize = 3;
+            if (page==0)
+            {
+                page = 1;
+            }
             model.Classes = clsServices.getAllClasses();
+
             if (string.IsNullOrEmpty(stdName)&&ID==0)
             {
-            model.Students = studentsServices.getAllStudents();
+                int totalCountAll = studentsServices.getAllStudentsCount();
+
+                model.Pager = new Pager(totalCountAll, page, recordSize);
+
+                model.Students = studentsServices.getAllStudents(recordSize,page.Value);
+                model.ClassID = 0;// ID.Value;
+                model.StdName = "";// stdName;
                 return View(model);
             }
-                model.Students = studentsServices.getAllStudentByName(stdName,ID);
+            
+            int totalCountAllByClass = studentsServices.getAllStudentByNameCount(ID.Value,stdName);
+
+            model.Pager = new Pager(totalCountAllByClass, page, recordSize);
+            model.Students = studentsServices.getAllStudentByName(stdName,ID.Value,recordSize, page.Value);
+            model.ClassID = ID.Value;
+            model.StdName = stdName;
             return View(model);
-         //   return PartialView("_Listing", model);
+        
         }
-        //public ActionResult Listing()
-        //{
-        //    if (!string.IsNullOrEmpty(stdName))
-        //    {
-        //    model.Students = studentsServices.getAllStudentByName(stdName);
-        //    }
-        //    model.Students = studentsServices.getAllStudents();
-        //    return PartialView("_Listing", model);
-        //}
+     
         [HttpGet]
         public ActionResult Action()
         {
