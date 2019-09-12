@@ -176,6 +176,7 @@
     <Compile Include="Areas\Dashboard\Controllers\UserController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\ClassModels.cs" />
+    <Compile Include="Areas\Dashboard\ViewModels\RoleModel.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\StudentsModels.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\TeacherModel.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\UserModel.cs" />
@@ -255,6 +256,13 @@
     <Content Include="Areas\Dashboard\Views\Role\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\User\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\User\_Listing.cshtml" />
+    <Content Include="Areas\Dashboard\Views\User\_Action.cshtml" />
+    <Content Include="Areas\Dashboard\Views\User\_Edit.cshtml" />
+    <Content Include="Areas\Dashboard\Views\User\_Delete.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Role\_Listing.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Role\_Action.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Role\_Edit.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Role\_Delete.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

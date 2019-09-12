@@ -11,6 +11,9 @@ namespace SMS.Entities
 {
    public class SMSUser : IdentityUser
     {
+        public String FullName { get; set; }
+        public String  Address { get; set; }
+        public String Phone { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<SMSUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

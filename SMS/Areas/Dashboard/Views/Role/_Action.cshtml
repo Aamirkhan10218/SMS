@@ -1,0 +1,46 @@
+﻿
+@model SMS.Areas.Dashboard.ViewModels.RoleActionModel
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create New Role</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form id="frmAction">
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Role</label>
+                <input class="form-control" name="Name" placeholder="Enter Role">
+            </div>
+           
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button id="btnAction" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Save changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fas fa-times mr-1"></i>Close</button>
+    </div>
+</div>
+
+<!--JQUERY FOR SAVE BUTTON-->
+<script>
+       $("#btnAction").click(function () {
+           $.ajax({
+               url: '@Url.Action("Action","Role")',
+               data: $("#frmAction").serialize(),
+               type: "post"
+           })
+               .done(function (response) {
+
+                   location.reload();
+               });
+       });
+
+
+</script>
+
+
