@@ -121,6 +121,7 @@ namespace SMS.Areas.Dashboard.Controllers
         [HttpPost]
         public async Task<ActionResult> Action(RoleActionModel model)
         {
+          
             var role = new IdentityRole();
             role.Name = model.Name;
             await RoleManager.CreateAsync(role);
@@ -141,6 +142,21 @@ namespace SMS.Areas.Dashboard.Controllers
             var user = await RoleManager.FindByIdAsync(model.ID);
             await RoleManager.DeleteAsync(user);
 
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public ActionResult UserRole()
+        {
+            UserRoleModel model = new UserRoleModel();
+
+            return PartialView("_UserRole", model);
+        }
+        [HttpPost]
+        public async Task<ActionResult> UserRole(RoleActionModel model)
+        {
+            var role = new IdentityRole();
+            role.Name = model.Name;
+            await RoleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
     }

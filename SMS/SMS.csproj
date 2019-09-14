@@ -263,6 +263,7 @@
     <Content Include="Areas\Dashboard\Views\Role\_Action.cshtml" />
     <Content Include="Areas\Dashboard\Views\Role\_Edit.cshtml" />
     <Content Include="Areas\Dashboard\Views\Role\_Delete.cshtml" />
+    <Content Include="Areas\Dashboard\Views\User\_UserRole.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

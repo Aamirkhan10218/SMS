@@ -1,4 +1,5 @@
-﻿using SMS.Entities;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SMS.Entities;
 using SMS.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace SMS.Areas.Dashboard.ViewModels
     public class UserListingModel
     {
         public List<SMSUser> Users { get; set; }
+        public List<IdentityRole> Roles { get; set; }
         public Pager Pager { get; set; }
         public string  RoleID { get; set; }
         public String UserName { get; set; }
@@ -23,5 +25,11 @@ namespace SMS.Areas.Dashboard.ViewModels
         public String Phone { get; set; }
         public String UserName { get; set; }
         public String Email { get; set; }
+    }
+
+    public class UserRoleModel
+    {
+        public List<IdentityRole> Roles { get; set; }
+        public List<IdentityRole> UserRoles { get; set; }
     }
 }

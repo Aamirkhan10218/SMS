@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using SMS.Areas.Dashboard.ViewModels;
 using SMS.Entities;
 using SMS.Services;
@@ -16,15 +17,16 @@ namespace SMS.Areas.Dashboard.Controllers
 
         private SMSSignInManager _signInManager;
         private SMSUserManager _userManager;
-
+        private SMSRoleManager _roleManager;
         public UserController()
         {
         }
 
-        public UserController(SMSUserManager userManager, SMSSignInManager signInManager)
+        public UserController(SMSUserManager userManager, SMSSignInManager signInManager, SMSRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public SMSSignInManager SignInManager
@@ -50,6 +52,18 @@ namespace SMS.Areas.Dashboard.Controllers
                 _userManager = value;
             }
         }
+
+        public SMSRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<SMSRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
         UserListingModel model = new UserListingModel();
         
         // GET: Dashboard/User
@@ -60,6 +74,7 @@ namespace SMS.Areas.Dashboard.Controllers
             int totalCountAll = searchUserCount(searchTerm, page.Value, recordSize);
             model.Pager = new Pager(totalCountAll, page, recordSize);
             model.Users = searchUser(searchTerm,page.Value,recordSize);
+            model.Roles = RoleManager.Roles.ToList();
             return View(model);
         }
         public List<SMSUser> searchUser(string searchTerm,int page,int recordSize)
@@ -149,6 +164,23 @@ namespace SMS.Areas.Dashboard.Controllers
             var user = await UserManager.FindByIdAsync(model.ID);
             await UserManager.DeleteAsync(user);
 
+            return RedirectToAction("Index");
+        }
+        public async Task<ActionResult> UserRole(string ID)
+        {
+            
+            UserRoleModel model = new UserRoleModel();
+        
+            model.Roles = RoleManager.Roles.ToList();
+            var user = await UserManager.FindByIdAsync(ID);
+            var userRoleID = user.Roles.Select(x => x.RoleId).ToList();
+            model.UserRoles=RoleManager.Roles.Where(x=>userRoleID.Contains(x.Id)).ToList();
+            return PartialView("_UserRole", model);
+        }
+        [HttpPost]
+        public async Task<ActionResult> UserRole(UserActionModel model)
+        {
+            
             return RedirectToAction("Index");
         }
     }
